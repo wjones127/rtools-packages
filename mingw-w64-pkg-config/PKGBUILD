@@ -83,4 +83,3 @@ package() {
   cd ${srcdir}/build-${MINGW_CHOST}
   make DESTDIR=${pkgdir} install
 }
-

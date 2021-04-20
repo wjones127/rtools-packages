@@ -69,3 +69,4 @@ package() {
   make install DESTDIR="${pkgdir}"
   install -Dm644 LICENSE "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE"
 }
+

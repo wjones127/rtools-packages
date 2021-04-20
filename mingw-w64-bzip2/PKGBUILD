@@ -62,3 +62,4 @@ package() {
   # rm "${pkgdir}${MINGW_PREFIX}/bin/bz"{diff,grep,more}
   install -Dm644 "${srcdir}/${_realname}-${pkgver}/LICENSE" "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE"
 }
+

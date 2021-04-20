@@ -68,7 +68,7 @@ for package in "${packages[@]}"; do
     execute 'Installing' yes:pacman --noprogressbar --upgrade *.pkg.tar.xz
     execute 'Checking Binaries' find ./pkg -regex ".*\.\(exe\|dll\|a\|pc\)"
     execute 'Copying binary package' mv *.pkg.tar.xz ../artifacts
-    execute 'Copying source package' mv *.src.tar.gz ../sourcepkg
+    #execute 'Copying source package' mv *.src.tar.gz ../sourcepkg
     unset package
 done
 

@@ -21,21 +21,30 @@ if [[ $(cygpath -m /) == *"rtools40"* ]]; then
 	echo "Found preinstalled rtools40 compilers!"
 else
 	# msys64: remove preinstalled toolchains
-    pacman --noconfirm -Rcsu $(pacman -Qqe | grep "^mingw-w64-")
-    pacman --noconfirm -Rcsu gcc pkg-config
+  pacman --noconfirm -Rcsu $(pacman -Qqe | grep "^mingw-w64-")
+    #pacman --noconfirm -Rcsu gcc pkg-config
 fi
 
 # Temp hack for weird msys2 flag
 sed -i 's/,--default-image-base-high//' /etc/makepkg_mingw.conf
 
+
+# Save DLLs
+pacman --noconfirm --needed -S mingw-w64-ucrt-x86_64-gcc
+mkdir -p /ucrt64/local/bin
+cp -v /ucrt64/bin/*.dll /ucrt64/local/bin/
+pacman --noconfirm -Rcsu $(pacman -Qqe | grep "^mingw-w64-")
+
 # Enable upstream msys2 repo
 cp -f pacman.conf /etc/pacman.conf
 pacman --noconfirm -Scc
 pacman --noconfirm -Syyu
+pacman --noconfirm -Suu
 pacman --noconfirm --needed -S git base-devel binutils
 
 # Install core build stuff
 pacman --noconfirm --needed -S mingw-w64-ucrt-x86_64-{crt,winpthreads,gcc,libtre,pkg-config,xz}
+mv -v /ucrt64/local/bin/*.dll /ucrt64/lib/gcc/x86_64-w64-mingw32/10.3.0/
 
 # Initiate git
 git_config user.email 'ci@msys2.org'

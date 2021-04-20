@@ -12,9 +12,7 @@ jobs:
     strategy:
       matrix:
         include: [
-          { msystem: ucrt64, arch: ucrt-x86_64 },
-          { msystem: mingw64, arch: x86_64 },
-          { msystem: mingw32, arch: i686 },
+          { msystem: ucrt64, arch: ucrt-x86_64 }
         ]
       fail-fast: false
     defaults:
@@ -29,7 +27,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MSYS
-          install: git mingw-w64-${{ matrix.arch }}-toolchain
+          install: git
           update: true
 
       - name: CI-Build
@@ -47,16 +45,16 @@ jobs:
           name: ${{ matrix.msystem }}
           path: artifacts/
 
-      - name: "Upload source package"
-        uses: actions/upload-artifact@v2
-        with:
-          name: sources
-          path: sourcepkg/
+      # - name: "Upload source package"
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: sources
+      #     path: sourcepkg/
   deploy:
     name: Deploy to staging server
     runs-on: ubuntu-20.04
     needs: [build]
-    if: success() && github.ref == 'refs/heads/master'
+    if: success() && github.ref == 'refs/heads/ucrt64'
     steps:
       - name: Get artifacts for deployment
         uses: actions/download-artifact@v2

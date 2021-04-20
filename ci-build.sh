@@ -35,7 +35,7 @@ pacman --noconfirm -Syyu
 pacman --noconfirm --needed -S git base-devel binutils
 
 # Install core build stuff
-pacman --noconfirm --needed -S mingw-w64-{i686,x86_64}-{crt,winpthreads,gcc,libtre,pkg-config,xz}
+pacman --noconfirm --needed -S mingw-w64-ucrt-x86_64-{crt,winpthreads,gcc,libtre,pkg-config,xz}
 
 # Initiate git
 git_config user.email 'ci@msys2.org'

@@ -35,7 +35,7 @@ pacman -S --noconfirm mingw-w64-ucrt-x86_64-{crt,headers}
 cp -f pacman.conf /etc/pacman.conf
 pacman --noconfirm -Scc
 pacman --noconfirm -Syyu
-pacman --noconfirm --needed -S git base-devel binutils
+pacman --noconfirm --needed -S git base-devel binutils unzip
 
 # Install core build stuff
 pacman --noconfirm --needed -S mingw-w64-ucrt-x86_64-{crt,winpthreads,gcc,libtre,pkg-config,xz}

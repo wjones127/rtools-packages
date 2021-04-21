@@ -53,3 +53,4 @@ package() {
   rm -R ${pkgdir}${MINGW_PREFIX}/bin
   rm ${pkgdir}${MINGW_PREFIX}/lib/*.dll.a
 }
+

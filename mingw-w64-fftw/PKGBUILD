@@ -65,3 +65,4 @@ package() {
   done
   cp ${pkgdir}${MINGW_PREFIX}/lib/libfftw3.a ${pkgdir}${MINGW_PREFIX}/lib/libfftw3-3.a
 }
+

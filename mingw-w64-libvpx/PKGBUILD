@@ -93,3 +93,4 @@ package() {
   cd "${srcdir}/build-$MINGW_CHOST"
   make DIST_DIR="${pkgdir}${MINGW_PREFIX}" install
 }
+

@@ -61,3 +61,4 @@ package() {
   make DESTDIR="${pkgdir}" -j1 install
   ${pkgdir}${MINGW_PREFIX}/bin/thrift --version
 }
+

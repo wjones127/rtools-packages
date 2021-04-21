@@ -58,3 +58,4 @@ package() {
   install -Dm644 ${srcdir}/${_realname}/LICENSE ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE
   install -Dm644 ${srcdir}/${_realname}/PATENTS ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/PATENTS
 }
+

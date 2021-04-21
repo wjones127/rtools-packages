@@ -54,3 +54,4 @@ package() {
   mv doc/${_realname}/COPYING licenses/${_realname}
   mv doc/${_realname}/LICENCE licenses/${_realname}
 }
+

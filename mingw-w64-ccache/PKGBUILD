@@ -51,3 +51,4 @@ package() {
     echo -e '#!/bin/bash\n\nccache '${MINGW_PREFIX}'/bin/'$fn' "$@"' > $fn
   done
 }
+

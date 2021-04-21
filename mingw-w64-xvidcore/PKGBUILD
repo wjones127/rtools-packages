@@ -39,3 +39,4 @@ package() {
   rm -Rf ${pkgdir}${MINGW_PREFIX}/bin ${pkgdir}${MINGW_PREFIX}/lib/*.dll.a
   mv ${pkgdir}${MINGW_PREFIX}/lib/xvidcore.a ${pkgdir}${MINGW_PREFIX}/lib/libxvidcore.a
 }
+

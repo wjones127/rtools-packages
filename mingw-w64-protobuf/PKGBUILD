@@ -81,3 +81,4 @@ package() {
   install -Dm644 "${srcdir}/build-${MINGW_CHOST}/protobuf.pc" "${pkgdir}/${MINGW_PREFIX}/lib/pkgconfig/protobuf.pc"
   install -Dm644 "${srcdir}/build-${MINGW_CHOST}/protobuf-lite.pc" "${pkgdir}/${MINGW_PREFIX}/lib/pkgconfig/protobuf-lite.pc"
 }
+

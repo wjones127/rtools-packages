@@ -213,3 +213,4 @@ package() {
       -sZLIB_LIBPATH=${MINGW_PREFIX}/lib \
       install
 }
+

@@ -38,3 +38,4 @@ package() {
   install -Dm644 ${srcdir}/${_realname}-${pkgver}/COPYING "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE"
   install -Dm644 ${srcdir}/${_realname}-${pkgver}/BSD.txt "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/BSD.txt"
 }
+

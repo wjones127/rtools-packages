@@ -11,7 +11,7 @@ arch=('any')
 url='http://www.coin-or.org'
 source=("https://www.coin-or.org/download/source/${_realname}/${_realname}-${pkgver}.tgz")
 sha256sums=('54df3fd953d9a2e4178f10373c6cb8b46a0808569b42adf07aa6d0044b2ab04b')
-
+license=("custom")
 depends=("${MINGW_PACKAGE_PREFIX}-coinor-cbc")
 makedepends=("${MINGW_PACKAGE_PREFIX}-pkg-config")
 groups=("rtools-coinor-symphony" "rtools-coinor")

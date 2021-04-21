@@ -39,3 +39,4 @@ package() {
   make INSTALLROOT="${pkgdir}" install install_rdf
   install -Dm644 ${srcdir}/${_realname}-${pkgver}/LICENSE "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE"
 }
+

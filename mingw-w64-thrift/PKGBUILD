@@ -52,7 +52,7 @@ build() {
 }
 
 check() {
-  #cd "${srcdir}/build-${MINGW_CHOST}"
+  cd "${srcdir}/build-${MINGW_CHOST}"
   #make check
 }
 

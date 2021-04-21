@@ -143,8 +143,8 @@ prepare() {
   apply_patch_with_msg \
     0140-gcc-8.2.0-diagnostic-color.patch
 
-  apply_patch_with_msg \
-    0150-gcc-10.2.0-libgcc-ldflags.patch
+#  apply_patch_with_msg \
+#    0150-gcc-10.2.0-libgcc-ldflags.patch
 
   # ensure libbacktrace works with SEH
   # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=96948
@@ -206,15 +206,6 @@ build() {
   if [ "$_enable_objc" == "yes" ]; then
     _languages+=",objc,obj-c++"
   fi
-  if [ "$_enable_jit" == "yes" ]; then
-    _languages+=",jit"
-  fi
-
-  # so libgomp DLL gets built despide static libdl
-  export lt_cv_deplibs_check_method='pass_all'
-
-  local _LDFLAGS_FOR_TARGET="$LDFLAGS"
-  LDFLAGS+=" -Wl,--disable-dynamicbase"
 
   ../${_sourcedir}/configure \
     --prefix=${MINGW_PREFIX} \
@@ -252,9 +243,6 @@ build() {
     --with-pkgversion="Built by Jeroen for the R-project" \
     --with-bugurl="https://github.com/r-windows/rtools-packages/issues" \
     --with-gnu-as --with-gnu-ld \
-    --with-boot-ldflags="${LDFLAGS} -static-libstdc++ -static-libgcc" \
-    LDFLAGS_FOR_TARGET="${_LDFLAGS_FOR_TARGET}" \
-    --enable-linker-plugin-flags='LDFLAGS=-static-libstdc++\ -static-libgcc\ '"${_LDFLAGS_FOR_TARGET// /\\ }"'\ -Wl,--stack,12582912' \
     ${_conf}
 
   # While we're debugging -fopenmp problems at least.

@@ -28,7 +28,10 @@ fi
 # Temp hack for weird msys2 flag
 sed -i 's/,--default-image-base-high//' /etc/makepkg_mingw.conf
 
-# Enable upstream msys2 repo
+# Take from upstream mingw-packages
+pacman -S --noconfirm mingw-w64-ucrt-x86_64-{crt,headers}
+
+# Disable upstream mingw-packages
 cp -f pacman.conf /etc/pacman.conf
 pacman --noconfirm -Scc
 pacman --noconfirm -Syyu

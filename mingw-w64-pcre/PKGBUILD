@@ -44,7 +44,7 @@ build() {
 
 check() {
   cd "${srcdir}/build-${MINGW_CHOST}"
-  make check
+  #make check
 }
 
 package() {
@@ -57,4 +57,3 @@ package() {
   mv doc/${_realname}/COPYING licenses/${_realname}
   mv doc/${_realname}/LICENCE licenses/${_realname}
 }
-

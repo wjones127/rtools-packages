@@ -45,3 +45,4 @@ package() {
   make install DESTDIR="${pkgdir}"
   rm -R ${pkgdir}${MINGW_PREFIX}/bin ${pkgdir}${MINGW_PREFIX}/lib/*.dll.a
 }
+

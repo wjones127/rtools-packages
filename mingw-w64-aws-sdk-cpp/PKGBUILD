@@ -62,3 +62,4 @@ check() {
   cd "${srcdir}"/build-${CARCH}
   #./aws-cpp-sdk-core-tests/aws-cpp-sdk-core-tests.exe
 }
+

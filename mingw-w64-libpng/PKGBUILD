@@ -48,3 +48,4 @@ package () {
   make install DESTDIR="${pkgdir}"
   install -D -m644 "${srcdir}/libpng-${pkgver}/LICENSE" "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE"
 }
+

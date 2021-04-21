@@ -61,8 +61,8 @@ build() {
     --disable-fc \
     --enable-ft \
     --disable-silent-rules \
-    --disable-gtk-doc-html \
-    --disable-gtk-doc
+    --enable-gtk-doc-html=no \
+    --enable-gtk-doc=no
 
   make #-j1 V=1
 }

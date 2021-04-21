@@ -48,3 +48,4 @@ package() {
   cd "${srcdir}/build-${MINGW_CHOST}"
   make CC=${MINGW_PREFIX}/bin/gcc DESTDIR="${pkgdir}" PREFIX=${MINGW_PREFIX} install BUILD_SHARED=no
 }
+

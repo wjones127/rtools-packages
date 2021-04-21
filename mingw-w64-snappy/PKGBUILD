@@ -39,3 +39,4 @@ package() {
   cd "${srcdir}/build-${MINGW_CHOST}-static"
   make DESTDIR=${pkgdir} install
 }
+

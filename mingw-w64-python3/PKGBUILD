@@ -386,6 +386,9 @@ build() {
   export ac_cv_have_decl_RTLD_NODELETE=no
   export ac_cv_have_decl_RTLD_NOLOAD=no
 
+# mktime with mingw-w64+ucrt is just an inline function
+  export ac_cv_func_mktime=yes
+
   [[ -d "${srcdir}/build-${CARCH}" ]] && rm -rf "${srcdir}/build-${CARCH}"
   mkdir -p "${srcdir}/build-${CARCH}" && cd "${srcdir}/build-${CARCH}"
 
@@ -585,5 +588,4 @@ sha256sums=('06a0a9f1bf0d8cd1e4121194d666c4e28ddae4dd54346de6c343206599f02136'
             '09c9f8e14c1f54a1242f4db21af4a014d414fd72b3a92241842965f550f75472'
             '180fd0a8f4d24ed7e50eb7916548f7fe398811a76063b043efdf7ab18602c55b'
             'f6aa23ec8031f24fb38330e9f150e82781a3802321b038906d083d7b0269bcfa'
-            '821402ddaef92140c70041b007bcf15e1cd5fe0fdb9f4f612da868382cc24585')
-
+            'SKIP')

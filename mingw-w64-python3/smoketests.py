@@ -85,6 +85,9 @@ class Tests(unittest.TestCase):
         # This should be able to execute without exceptions
         sysconfig.get_config_vars()
 
+    def test_has_mktime(self):
+        from time import mktime, gmtime
+        mktime(gmtime())
 
 def suite():
     return unittest.TestLoader().loadTestsFromName(__name__)

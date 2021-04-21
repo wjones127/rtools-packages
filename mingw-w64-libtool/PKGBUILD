@@ -66,3 +66,4 @@ package() {
   local MINGW_PREFIX_W=$(cygpath -m "${MINGW_PREFIX}")
   sed -i "s#${MINGW_PREFIX_W}#${MINGW_PREFIX}#g" "${pkgdir}${MINGW_PREFIX}"/bin/libtool
 }
+

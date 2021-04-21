@@ -39,3 +39,4 @@ package() {
   cd "${srcdir}/$MINGW_CHOST"
   make install DESTDIR="${pkgdir}"
 }
+

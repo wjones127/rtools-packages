@@ -27,3 +27,4 @@ package() {
   mkdir -p "${pkgdir}${MINGW_PREFIX}"/lib
   mv "${srcdir}/ninja-${pkgver}/build/libninja.a" "${pkgdir}${MINGW_PREFIX}"/lib/
 }
+

@@ -118,3 +118,4 @@ package() {
   sed -s "s|${PREFIX_DEPS}\/lib|\${libdir}|g" -i ./libxml-2.0.pc
   popd > /dev/null
 }
+

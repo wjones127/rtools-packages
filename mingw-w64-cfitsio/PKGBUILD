@@ -48,3 +48,4 @@ package() {
 
   install -Dm644 ${srcdir}/${_realname}/License.txt "${pkgdir}${MINGW_PREFIX}"/share/licenses/${_realname}/LICENSE
 }
+

@@ -48,6 +48,7 @@ prepare() {
 build() {
   export MSYS2_ARG_CONV_EXCL="-//OASIS//DTD"
   msg "Build static version"
+  unset PKG_CONFIG
   mkdir -p ${srcdir}/build-${CARCH}-static && cd ${srcdir}/build-${CARCH}-static
   ../glib-${pkgver}/configure \
     --prefix=${MINGW_PREFIX} \

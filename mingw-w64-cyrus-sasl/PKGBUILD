@@ -36,7 +36,7 @@ depends=("${MINGW_PACKAGE_PREFIX}-gdbm"
          #"${MINGW_PACKAGE_PREFIX}-openssl"
          "${MINGW_PACKAGE_PREFIX}-sqlite3")
 options=('emptydirs' 'strip' '!makeflags')
-source=(https://cyrusimap.org/releases/${_realname}-${_basever}-${_rc}.tar.gz
+source=(http://cyrusimap.org/releases/${_realname}-${_basever}-${_rc}.tar.gz
         02-exeext.patch
         03-fix-plugins.patch
         04-manpage-paths.patch

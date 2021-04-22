@@ -37,3 +37,4 @@ package() {
   # fix .pc file
   sed -i "s|$(cygpath -m ${MINGW_PREFIX})|${MINGW_PREFIX}|g" ${pkgdir}${MINGW_PREFIX}/lib/pkgconfig/jsoncpp.pc
 }
+

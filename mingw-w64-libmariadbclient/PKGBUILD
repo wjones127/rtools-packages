@@ -85,3 +85,4 @@ package() {
   #local PREFIX_WIN=$(cygpath -wm ${MINGW_PREFIX})
   #sed -e "s|${PREFIX_WIN}|${MINGW_PREFIX}/|g" -i "${pkgdir}${MINGW_PREFIX}"/include/mariadb/my_config.h
  }
+ 

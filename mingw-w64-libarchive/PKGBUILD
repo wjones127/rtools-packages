@@ -56,3 +56,4 @@ package() {
   _localpath=$(cygpath -wm ${MINGW_PREFIX})
   sed -i -e "s|${_localpath}|${MINGW_PREFIX}|g" ${pkgdir}/${MINGW_PREFIX}/lib/pkgconfig/libarchive.pc
 }
+

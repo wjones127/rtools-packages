@@ -45,3 +45,4 @@ package() {
   cd "${srcdir}/build-${MINGW_CHOST}"
   make -j1 DESTDIR="${pkgdir}" install
 }
+

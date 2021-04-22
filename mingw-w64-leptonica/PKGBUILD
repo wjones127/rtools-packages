@@ -55,3 +55,4 @@ package() {
   # Fix .pc file
   sed -s "s|$(cygpath -m ${MINGW_PREFIX})|${MINGW_PREFIX}|g" -i "${pkgdir}${MINGW_PREFIX}"/lib/pkgconfig/lept.pc  
 }
+

@@ -66,3 +66,4 @@ package() {
   mkdir -p ${pkgdir}${MINGW_PREFIX}/share/tessdata
   install -Dm0644 ${srcdir}/osd.traineddata ${pkgdir}${MINGW_PREFIX}/share/tessdata/osd.traineddata
 }
+

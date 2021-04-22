@@ -79,3 +79,4 @@ EOF
 
   find "${pkgdir}${MINGW_PREFIX}" -name '*.def' -o -name '*.exp' | xargs -rtl1 rm
 }
+

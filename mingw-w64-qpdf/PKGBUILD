@@ -54,3 +54,4 @@ package() {
   # libqpdf.a is actually an import library :(
   rm -R ${pkgdir}${MINGW_PREFIX}/{lib,include}
 }
+

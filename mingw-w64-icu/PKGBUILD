@@ -121,3 +121,4 @@ package() {
   rm -Rf "${pkgdir}${MINGW_PREFIX}"/bin/
   rm -Rf "${pkgdir}${MINGW_PREFIX}"/sbin/
 }
+

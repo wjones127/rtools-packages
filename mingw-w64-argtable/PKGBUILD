@@ -18,7 +18,7 @@ options=('staticlibs' 'strip')
 
 prepare() {
   cd "${srcdir}"/${_realname}${intver}
-  sed -i.bak 's/enum/enum ERRORCODES/g' src/arg_int.c
+  sed -i.bak 's/EOVERFLOW/EOVERFLOWCUStom/g' src/arg_int.c
 }
 
 

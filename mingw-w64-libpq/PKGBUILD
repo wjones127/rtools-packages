@@ -82,3 +82,4 @@ package() {
   # Fix pkg-config file
   sed -i 's/-lpq/-lpq -lpgport -lpgcommon/g' "${pkgdir}${MINGW_PREFIX}/lib/pkgconfig/libpq.pc"
 }
+

@@ -50,3 +50,4 @@ package() {
   cd "${srcdir}"/${_realname}-${pkgver}
   install -Dm 644 COPYING "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/COPYING"
 }
+

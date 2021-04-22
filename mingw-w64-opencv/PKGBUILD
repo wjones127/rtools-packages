@@ -157,3 +157,4 @@ package() {
       "${pkgdir}${MINGW_PREFIX}"/include/opencv4/opencv2/${_module}
   done
 }
+

@@ -91,6 +91,7 @@ prepare() {
   sed -i "s/-lproj/${PROJLIBS}/g" configure
   sed -i "s/-ltiff/${TIFFLIBS}/g" configure
   sed -i "s/-lfreexl/-lfreexl -liconv/g" configure
+  sed -i "s/__MSVCRT_VERSION__/BLABLABLA/g" port/cpl_port.h
 
 }
 

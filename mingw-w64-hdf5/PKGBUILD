@@ -82,3 +82,4 @@ package() {
     sed -e "s|${PREFIX_WIN}|\$\{_IMPORT_PREFIX\}|g" -i ${_f}
   done
 }
+

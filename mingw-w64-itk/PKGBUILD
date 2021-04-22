@@ -95,4 +95,3 @@ package() {
     "share/licenses/${_realname}/KWSys/Copyright.txt"
   popd > /dev/null
 }
-

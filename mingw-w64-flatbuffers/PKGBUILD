@@ -45,3 +45,4 @@ package() {
   make install DESTDIR="${pkgdir}"
   install -Dm755 flatc.exe -t "${pkgdir}${MINGW_PREFIX}"/bin
 }
+

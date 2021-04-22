@@ -79,3 +79,4 @@ package() {
   make DESTDIR="${pkgdir}" install
   install -Dm644 "${srcdir}/gdk-pixbuf-${pkgver}/COPYING" "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/COPYING"
 }
+

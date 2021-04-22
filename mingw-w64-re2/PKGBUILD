@@ -72,3 +72,4 @@ package() {
   cd "${srcdir}/${_realname}-${_pkgver}"
   install -Dm644 LICENSE "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE"
 }
+

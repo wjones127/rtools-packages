@@ -118,3 +118,4 @@ package() {
   # Jeroen: delete command line utilities
   rm -Rf ${pkgdir}${MINGW_PREFIX}/bin
 }
+

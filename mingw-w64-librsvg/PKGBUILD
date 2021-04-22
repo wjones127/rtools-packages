@@ -11,14 +11,14 @@ url="https://wiki.gnome.org/Projects/LibRsvg"
 license=("LGPL")
 makedepends=("${MINGW_PACKAGE_PREFIX}-gcc"
              "${MINGW_PACKAGE_PREFIX}-pkg-config"
-             "setconf")
+             "setconf",
+             "gtk-doc")
 depends=("${MINGW_PACKAGE_PREFIX}-gdk-pixbuf2"
          "${MINGW_PACKAGE_PREFIX}-glib2"
          "${MINGW_PACKAGE_PREFIX}-harfbuzz"
          "${MINGW_PACKAGE_PREFIX}-pango"
          "${MINGW_PACKAGE_PREFIX}-cairo"
-         "${MINGW_PACKAGE_PREFIX}-libxml2"
-         "gtk-doc")
+         "${MINGW_PACKAGE_PREFIX}-libxml2")
 options=('staticlibs' 'strip')
 source=("https://download.gnome.org/sources/librsvg/${pkgver%.*}/${_realname}-${pkgver}.tar.xz"
         "0005-hack-unixy-paths.patch"
@@ -67,7 +67,7 @@ build() {
     --enable-static \
     --disable-shared \
     --disable-introspection \
-    --enable-tools=no \
+    --enable-tools=yes \
     --enable-pixbuf-loader=no \
     --enable-gtk-doc=no \
     --enable-gtk-doc-html=no \

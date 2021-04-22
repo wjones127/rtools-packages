@@ -40,7 +40,7 @@ prepare() {
   if [[ $MINGW_PACKAGE_PREFIX == *-ucrt-* ]]; then
     patch -p1 -i ${srcdir}/a75f8df.patch
     sed -i.bak 's/_MSC_VER < 1900/0/g' src/cairo-compiler-private.h
-    sed -i.bak 's/FORTIFY_SOURCE/BLABLASOURCE/g' configure.ac
+    sed -i.bak '/FORTIFY_SOURCE/d' build/configure.ac.warnings
   fi
   patch -p1 -i ${srcdir}/0009-standalone-headers.mingw.patch
   patch -p1 -i ${srcdir}/0026-create-argb-fonts.all.patch

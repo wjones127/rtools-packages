@@ -79,3 +79,4 @@ package() {
   install -m644 build-cmake/TBBConfig.cmake "${pkgdir}${MINGW_PREFIX}"/lib/cmake/tbb/
   install -m644 build-cmake/TBBConfigVersion.cmake "${pkgdir}${MINGW_PREFIX}"/lib/cmake/tbb/
 }
+

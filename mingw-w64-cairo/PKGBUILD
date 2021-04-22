@@ -37,8 +37,10 @@ sha256sums=('5e7b29b3f113ef870d1e3ecf8adf21f923396401604bda16d44be45e66052331'
 
 prepare() {
   cd "${srcdir}"/${_realname}-${pkgver}
-  patch -p1 -i ${srcdir}/a75f8df.patch
-  sed -i.bak 's/_MSC_VER < 1900/__MINGW64_VERSION_MAJOR < 7/g' src/cairo-compiler-private.h
+  if [[ $MINGW_PACKAGE_PREFIX == *-ucrt-* ]]; then
+    patch -p1 -i ${srcdir}/a75f8df.patch
+    sed -i.bak 's/_MSC_VER < 1900/0/g' src/cairo-compiler-private.h
+  fi
   patch -p1 -i ${srcdir}/0009-standalone-headers.mingw.patch
   patch -p1 -i ${srcdir}/0026-create-argb-fonts.all.patch
   patch -p1 -i ${srcdir}/0027-win32-print-fix-unbounded-surface-assertion.patch

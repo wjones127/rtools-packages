@@ -45,3 +45,4 @@ package() {
   make DESTDIR="${pkgdir}" install
   install -D ${srcdir}/${_realname}-${_realname}-${pkgver/_/-}/COPYING ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/COPYING
 }
+

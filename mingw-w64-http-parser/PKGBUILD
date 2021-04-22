@@ -37,3 +37,4 @@ package() {
   install -Dm644 http_parser.h "${pkgdir}${MINGW_PREFIX}/include/http_parser.h"
   cp *.a ${pkgdir}${MINGW_PREFIX}/lib/
 }
+

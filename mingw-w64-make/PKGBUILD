@@ -56,3 +56,4 @@ package() {
     cp -f gnumake.h ${pkgdir}${MINGW_PREFIX}/include/
   fi
 }
+

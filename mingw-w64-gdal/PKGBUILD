@@ -84,6 +84,7 @@ prepare() {
   SPATIALLIBS="-lspatialite -lxml2 -lproj -lgeos_c -lgeos $(pkg-config --libs-only-l --static freexl sqlite3 libtiff-4 libcurl)"
   #sed -i "s/-lspatialite/${SPATIALLIBS}/g" configure.ac
 
+  touch config.rpath
   ./autogen.sh
 
   sed -i "s/-lspatialite/${SPATIALLIBS}/g" configure
@@ -173,3 +174,4 @@ package () {
   echo "Not including executables in rtools40 package:"
   rm -v ${pkgdir}${MINGW_PREFIX}/bin/*.exe
 }
+

@@ -45,3 +45,4 @@ package() {
   local PREFIX_DEPS=$(cygpath -am ${MINGW_PREFIX})
   find ${pkgdir}${MINGW_PREFIX}/lib/pkgconfig -name *.pc -exec sed -i -e"s|${PREFIX_DEPS}|${MINGW_PREFIX}|g" {} \;
 }
+

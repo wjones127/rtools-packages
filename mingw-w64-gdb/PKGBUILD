@@ -77,7 +77,7 @@ build() {
   
 
   CPPFLAGS+=" -I${MINGW_PREFIX}/include/ncurses"
-  CFLAGS+=" -I${MINGW_PREFIX}/include/ncurses"
+  CFLAGS+=" -I${MINGW_PREFIX}/include/ncurses -fcommon"
   CXXFLAGS+=" -I${MINGW_PREFIX}/include/ncurses"
   LDFLAGS+=" -fstack-protector"
 

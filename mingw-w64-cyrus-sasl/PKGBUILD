@@ -24,9 +24,8 @@
 _realname=cyrus-sasl
 pkgbase=mingw-w64-${_realname}
 pkgname=("${MINGW_PACKAGE_PREFIX}-${_realname}")
-_rc=rc7
 _basever=2.1.27
-pkgver=${_basever}.${_rc}
+pkgver=${_basever}
 pkgrel=9100
 pkgdesc="Cyrus Simple Authentication Service Layer (SASL) library"
 arch=('any')
@@ -36,7 +35,7 @@ depends=("${MINGW_PACKAGE_PREFIX}-gdbm"
          #"${MINGW_PACKAGE_PREFIX}-openssl"
          "${MINGW_PACKAGE_PREFIX}-sqlite3")
 options=('emptydirs' 'strip' '!makeflags')
-source=(http://cyrusimap.org/releases/${_realname}-${_basever}-${_rc}.tar.gz
+source=(https://fossies.org/linux/misc/${_realname}-${_basever}.tar.gz
         02-exeext.patch
         03-fix-plugins.patch
         04-manpage-paths.patch
@@ -45,7 +44,7 @@ source=(http://cyrusimap.org/releases/${_realname}-${_basever}-${_rc}.tar.gz
         16-MinGW-w64-define-WIN32_LEAN_AND_MEAN-avoiding-handle_t-redef.patch
         17-MinGW-w64-define-S_IRUSR-and-S_IWUSR.patch
         19-paths-relocation.patch)
-sha256sums=('c1846b80e80286c94941a1e27974bba759b171ccad25d5b49bd8d9deab10f54b'
+sha256sums=('SKIP'
             '0d0220f721b07f821e14f00c04250c2243620301200f825e7f0532b581d63a7d'
             '62fca7407d288e021fac6fed47d8a94ef2775c257ddcb79071428fe7719485f5'
             'a4abc51b2509e0792f7dc019afcb0bf6dacfdcf1132d28cf7562bbb18828a8fc'

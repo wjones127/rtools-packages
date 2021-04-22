@@ -119,3 +119,4 @@ package() {
 
   install -Dm644 ${srcdir}/${_realname}-${_basever}/COPYING "${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/COPYING"
 }
+

@@ -37,3 +37,4 @@ package() {
   cd "$srcdir/build-${CARCH}s"
   make DESTDIR="$pkgdir" install
 }
+

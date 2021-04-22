@@ -97,3 +97,4 @@ package() {
   cp ${srcdir}/build-nodap-${MINGW_CHOST}/liblib/libnetcdf.a ${pkgdir}${MINGW_PREFIX}/lib/libnetcdf.a
   cp ${srcdir}/build-nodap-${MINGW_CHOST}/liblib/libnetcdf.a ${pkgdir}${MINGW_PREFIX}/lib/libnetcdf4.a
 }
+

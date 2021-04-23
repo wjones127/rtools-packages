@@ -53,3 +53,4 @@ package() {
 
   install -Dm644 ${srcdir}/${_basname}-${pkgver}/LICENSE.md ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE
 }
+

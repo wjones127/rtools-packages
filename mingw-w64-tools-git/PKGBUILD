@@ -1,32 +1,38 @@
 # Maintainer: Alexey Pavlov <alexpux@gmail.com>
 # Contributor: Martell Malone <martellmalone@gmail.com>
-# Rtools: Jeroen Ooms <jeroenooms@gmail.com>
 
 _realname=tools
 pkgbase=mingw-w64-${_realname}-git
 pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}-git"
-replaces=("${MINGW_PACKAGE_PREFIX}-${_realname}-svn")
 provides=("${MINGW_PACKAGE_PREFIX}-${_realname}")
 conflicts=("${MINGW_PACKAGE_PREFIX}-${_realname}")
-pkgver=5.0.4
-pkgrel=9500
+pkgver=9.0.0.6166.0a00d0ea
+pkgrel=1
+_commit='0a00d0ea9b2cff3f22b276201fd22daee162ff07'
 pkgdesc="MinGW-w64 tools"
 arch=('any')
+mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64')
 url="https://mingw-w64.sourceforge.io/"
 license=('custom')
 groups=("${MINGW_PACKAGE_PREFIX}-toolchain")
-makedepends=("${MINGW_PACKAGE_PREFIX}-gcc" "${MINGW_PACKAGE_PREFIX}-libmangle")
+makedepends=("git" "${MINGW_PACKAGE_PREFIX}-gcc" "${MINGW_PACKAGE_PREFIX}-libmangle")
+depends=("${MINGW_PACKAGE_PREFIX}-gcc-libs")
 options=('staticlibs' '!emptydirs')
-source=("https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/mingw-w64-v${pkgver}.tar.bz2"
-        gcc8.patch)
-sha256sums=('5527e1f6496841e2bb72f97a184fc79affdcd37972eaa9ebf7a5fd05c31ff803'
-            'SKIP')
+source=("mingw-w64"::"git+https://git.code.sf.net/p/mingw-w64/mingw-w64#commit=$_commit")
+sha256sums=('SKIP')
 _tools="gendef genlib genidl genpeimg widl" # genstubdll
 
+pkgver() {
+  cd "${srcdir}/mingw-w64"
+  local _major=$(head -n 16 mingw-w64-headers/crt/_mingw_mac.h | grep '__MINGW64_VERSION_MAJOR' | sed -e 's/.* //' | tr '\n' '.' | sed 's/.$/\n/')
+  local _minor=$(head -n 16 mingw-w64-headers/crt/_mingw_mac.h | grep '__MINGW64_VERSION_MINOR' | sed -e 's/.* //' | tr '\n' '.' | sed 's/.$/\n/')
+  local _rev=0
+  printf "%s.%s.%s.%s.%s" ${_major} ${_minor} ${_rev} "$(git rev-list --count $_commit)" "$(git rev-parse --short $_commit)"
+}
+
 prepare() {
-  cd ${srcdir}/mingw-w64-v${pkgver}
+  cd "${srcdir}/mingw-w64"
   #git am "${srcdir}/0001-widl-Relocate-DEFAULT_INCLUDE_DIR.patch"
-  patch -p1 -i ${srcdir}/gcc8.patch
 }
 
 build() {
@@ -36,7 +42,7 @@ build() {
     [[ -d ${srcdir}/${MINGW_CHOST}-${cur} ]] && rm -rf ${srcdir}/${MINGW_CHOST}-${cur}
     mkdir -p ${srcdir}/${MINGW_CHOST}-${cur}
     cd ${srcdir}/${MINGW_CHOST}-${cur}
-    ${srcdir}/mingw-w64-v${pkgver}/mingw-w64-tools/${cur}/configure \
+    ${srcdir}/mingw-w64/mingw-w64-tools/${cur}/configure \
       --prefix=${MINGW_PREFIX} \
       --build=${MINGW_CHOST} \
       --host=${MINGW_CHOST} \

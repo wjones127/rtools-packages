@@ -70,3 +70,4 @@ package() {
   install -Dm0644 ${srcdir}/${_realname}-${pkgver}/LICENSE ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE
   install -Dm0644 ${srcdir}/${_realname}-${pkgver}/lapack-netlib/LICENSE ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/LICENSE-lapack
 }
+

@@ -100,3 +100,4 @@ package() {
   install -D -m644 ${srcdir}/${_realname}-${pkgver}/BSDL \
      "${pkgdir}${MINGW_PREFIX}/share/licenses/ruby/BSDL"
 }
+

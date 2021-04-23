@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         include: [
-          { msystem: ucrt64, arch: ucrt-x86_64 }
+          { msystem: ucrt64, toolchain: ucrt-x86_64 }
         ]
       fail-fast: false
     defaults:
@@ -31,10 +31,11 @@ jobs:
           update: true
 
       - name: CI-Build
-        run: MINGW_ARCH=${{ matrix.msystem }} ./ci-build.sh
+        run: ./ci-build.sh
         env:
-          BUILD_URL: dummy
-          RTOOLS_FOLDER: ${{ matrix.msystem }}
+          BUILD_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+          MINGW_ARCH: ${{ matrix.msystem }}
+          MINGW_TOOLCHAIN: ${{ matrix.toolchain }}
           PACMAN_REPOSITORY: ${{ matrix.msystem }}
 
       - name: "Upload binary package"

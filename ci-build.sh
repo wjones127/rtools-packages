@@ -17,20 +17,15 @@ else
   pacman --noconfirm -Rcsu $(pacman -Qqe | grep "^mingw-w64-")
 fi
 
-# Temp hack for weird msys2 flag
-sed -i 's/,--default-image-base-high//' /etc/makepkg_mingw.conf
-
-# Take from upstream mingw-packages
-pacman -S --noconfirm mingw-w64-ucrt-x86_64-{crt,headers}
-
 # Disable upstream mingw-packages
 cp -f pacman.conf /etc/pacman.conf
 pacman --noconfirm -Scc
 pacman --noconfirm -Syyu
 pacman --noconfirm --needed -S git base-devel binutils unzip
+pacman --noconfirm --needed -S mingw-w64-${MINGW_TOOLCHAIN}-{toolchain,libtre,pkg-config,xz}
 
-# Install core build stuff
-pacman --noconfirm --needed -S mingw-w64-ucrt-x86_64-{winpthreads,gcc,libtre,pkg-config,xz}
+# Remove weird upstream build flags
+sed -i 's/,--default-image-base-high//' /etc/makepkg_mingw.conf
 
 # Initiate git
 git_config user.email 'ci@msys2.org'

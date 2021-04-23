@@ -95,8 +95,8 @@ _build_add() {
 _download_previous() {
     local filenames=("${@}")
     for filename in "${filenames[@]}"; do
-        if ! curl -fsSOL "https://ftp.opencpu.org/rtools/${RTOOLS_FOLDER}/${filename}"; then
-            echo "Failed to get https://ftp.opencpu.org/rtools/${RTOOLS_FOLDER}/${filename}"
+        if ! curl -fsSOL "https://ftp.opencpu.org/rtools/${MINGW_ARCH}/${filename}"; then
+            echo "Failed to get https://ftp.opencpu.org/rtools/${MINGW_ARCH}/${filename}"
             rm -f "${filenames[@]}"
             return 1
         fi

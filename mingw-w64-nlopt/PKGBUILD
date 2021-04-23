@@ -79,3 +79,4 @@ package() {
   make install DESTDIR="${pkgdir}"
   mv "${srcdir}"/build-${CARCH}/libnlopt_cxx.a "${pkgdir}"${MINGW_PREFIX}/lib
 }
+

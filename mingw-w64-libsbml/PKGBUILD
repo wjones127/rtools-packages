@@ -46,3 +46,4 @@ package() {
   rm -Rf ${pkgdir}${MINGW_PREFIX}/lib/*.dll.a
   mv ${pkgdir}${MINGW_PREFIX}/lib/libsbml-static.a ${pkgdir}${MINGW_PREFIX}/lib/libsbml.a
 }
+

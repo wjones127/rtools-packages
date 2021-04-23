@@ -50,3 +50,4 @@ package() {
   install -Dm644 ${srcdir}/RHash-${pkgver}/COPYING \
     "$pkgdir${MINGW_PREFIX}"/share/licenses/rhash/LICENSE
 }
+

@@ -59,7 +59,7 @@ apply_patch_with_msg \
   0002-use-gnu-printf.patch \
   0003-fix-check-types.patch
 #  patch -p1 -i ${srcdir}/0004-rbinstall-destdir.patch
-  autoreconf -fi
+  #autoreconf -fi
 }
 
 build() {

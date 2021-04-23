@@ -43,10 +43,8 @@ depends=("${MINGW_PACKAGE_PREFIX}-cfitsio"
          "${MINGW_PACKAGE_PREFIX}-xz")
 #optdepends=("${MINGW_PACKAGE_PREFIX}-postgresql")
 options=('strip' 'staticlibs')
-source=(https://download.osgeo.org/${_realname}/${pkgver}/${_realname}-${pkgver}.tar.gz
-        https://patch-diff.githubusercontent.com/raw/jeroen/gdal/pull/1.patch)
-sha256sums=('43d40ba940e3927e38f9e98062ff62f9fa993ceade82f26f16fab7e73edb572e'
-            'SKIP')
+source=(https://download.osgeo.org/${_realname}/${pkgver}/${_realname}-${pkgver}.tar.gz)
+sha256sums=('43d40ba940e3927e38f9e98062ff62f9fa993ceade82f26f16fab7e73edb572e')
 
 prepare() {
   cd ${srcdir}
@@ -95,6 +93,7 @@ prepare() {
   sed -i "s/-lproj/${PROJLIBS}/g" configure
   sed -i "s/-ltiff/${TIFFLIBS}/g" configure
   sed -i "s/-lfreexl/-lfreexl -liconv/g" configure
+  sed -i "s/__MSVCRT_VERSION__/__BLABLABLA__/g" port/cpl_port.h
 }
 
 build() {

@@ -101,9 +101,9 @@ package() {
   make install DESTDIR="${pkgdir}" RM="rm -rf"
 
   #mv "${pkgdir}${MINGW_PREFIX}"/lib/*.dll "${pkgdir}${MINGW_PREFIX}"/bin/
-  mv "${pkgdir}${MINGW_PREFIX}"/bin/*.a "${pkgdir}${MINGW_PREFIX}"/lib/
-  #pushd "${pkgdir}${MINGW_PREFIX}"/bin > /dev/null
-  #  # remove unversioned DLL symlinks
-  #  find . -regex "[^0-9]+\.dll" -exec rm -rf {} \;
-  #popd > /dev/null
+  mv -v "${pkgdir}${MINGW_PREFIX}"/bin/*.a "${pkgdir}${MINGW_PREFIX}"/lib/
+
+  # Jeroen: save some space in rtools
+  rm -Rf "${pkgdir}${MINGW_PREFIX}"/bin/
+  rm -Rf "${pkgdir}${MINGW_PREFIX}"/sbin/
 }

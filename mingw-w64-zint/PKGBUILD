@@ -10,7 +10,7 @@ pkgdesc="Extended-Rice lossless compression algorithm implementation (mingw-w64)
 arch=('any')
 license=("custom")
 url="https://www.hdfgroup.org/doc_resource/SZIP/"
-source=("https://downloads.sourceforge.net/project/zint/zint/${pkgver}/zint-${pkgver}-src.tar.gz")
+source=("https://nav.dl.sourceforge.net/project/zint/zint/${pkgver}/zint-${pkgver}-src.tar.gz")
 sha256sums=('adcaebeb2931163a567073644c8e7952430ea31e08060363432d77cc599318d8')
 makedepends=("${MINGW_PACKAGE_PREFIX}-gcc" "${MINGW_PACKAGE_PREFIX}-cmake")
 depends=("${MINGW_PACKAGE_PREFIX}-libpng")
@@ -39,4 +39,3 @@ package() {
   cd "${srcdir}/build-${MINGW_CHOST}"
   make DESTDIR=${pkgdir} install
 }
-

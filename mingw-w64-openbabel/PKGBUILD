@@ -53,3 +53,4 @@ package() {
   mkdir -p ${pkgdir}${MINGW_PREFIX}/bin
   mv ${pkgdir}${MINGW_PREFIX}/lib/*.exe ${pkgdir}${MINGW_PREFIX}/bin
 }
+

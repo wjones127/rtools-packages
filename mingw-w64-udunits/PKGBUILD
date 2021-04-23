@@ -34,3 +34,4 @@ package() {
   cd "${srcdir}"/build-${CARCH}-static
   make install DESTDIR="${pkgdir}"
 }
+

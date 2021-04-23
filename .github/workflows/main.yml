@@ -34,10 +34,8 @@ jobs:
         run: MINGW_ARCH=${{ matrix.msystem }} ./ci-build.sh
         env:
           BUILD_URL: dummy
-          BINTRAY_TARGET: rtools
-          BINTRAY_REPOSITORY: ${{ matrix.msystem }}
+          RTOOLS_FOLDER: ${{ matrix.msystem }}
           PACMAN_REPOSITORY: ${{ matrix.msystem }}
-          BINTRAY_PACKAGE: ${{ matrix.msystem }}
 
       - name: "Upload binary package"
         uses: actions/upload-artifact@v2

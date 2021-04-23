@@ -1,13 +1,8 @@
 #!/bin/bash
-
-# AppVeyor and Drone Continuous Integration for MSYS2
-# Authors: Renato Silva, Qian Hong, Jeroen Ooms
-
-# Setup git and CI
 cd "$(dirname "$0")"
 source 'ci-library.sh'
-deploy_enabled && mkdir artifacts
-deploy_enabled && mkdir sourcepkg
+mkdir artifacts
+mkdir sourcepkg
 
 ## Remove packages
 #deploy_enabled && cd artifacts
@@ -15,14 +10,11 @@ deploy_enabled && mkdir sourcepkg
 #success 'Package removal successful'
 #exit 0
 
-# Depending on if this is an rtools40 or msys64 installation:
+# Remove preinstalled libraries depending on if this is an rtools40 or msys64 install:
 if [[ $(cygpath -m /) == *"rtools40"* ]]; then
-	# rtools40: enable upstream msys2 (but keep rtools-base as primary)
-	echo "Found preinstalled rtools40 compilers!"
+  echo "Found preinstalled rtools40 compilers!"
 else
-	# msys64: remove preinstalled toolchains
   pacman --noconfirm -Rcsu $(pacman -Qqe | grep "^mingw-w64-")
-    #pacman --noconfirm -Rcsu gcc pkg-config
 fi
 
 # Temp hack for weird msys2 flag
@@ -76,7 +68,7 @@ for package in "${packages[@]}"; do
 done
 
 # Prepare for deploy
-deploy_enabled && cd artifacts || success 'All packages built successfully'
+cd artifacts || success 'All packages built successfully'
 execute 'Updating pacman repository index' create_pacman_repository "${PACMAN_REPOSITORY:-ci-build}"
 execute 'Generating build references'  create_build_references  "${PACMAN_REPOSITORY:-ci-build}"
 execute 'SHA-256 checksums' sha256sum *

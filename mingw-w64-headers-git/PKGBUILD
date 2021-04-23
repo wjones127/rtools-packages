@@ -88,3 +88,4 @@ package() {
   install -Dm644 ${srcdir}/mingw-w64/COPYING.MinGW-w64/COPYING.MinGW-w64.txt ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/COPYING.MinGW-w64.txt
   install -Dm644 ${srcdir}/mingw-w64/COPYING.MinGW-w64-runtime/COPYING.MinGW-w64-runtime.txt ${pkgdir}${MINGW_PREFIX}/share/licenses/${_realname}/COPYING.MinGW-w64-runtime.txt
 }
+

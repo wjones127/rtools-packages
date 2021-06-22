@@ -3,85 +3,77 @@
 _realname=libmariadbclient
 pkgbase=mingw-w64-${_realname}
 pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}"
-pkgver=3.1.11
-pkgrel=2
+pkgver=3.1.12
+pkgrel=1
 pkgdesc="MariaDB client libraries (mingw-w64)"
 arch=('any')
 url="https://mariadb.org/"
 license=('LGPL')
-makedepends=("${MINGW_PACKAGE_PREFIX}-gcc"
-             "${MINGW_PACKAGE_PREFIX}-cmake")
-depends=("${MINGW_PACKAGE_PREFIX}-openssl"
-         "${MINGW_PACKAGE_PREFIX}-zlib")
-#optdepends=("${MINGW_PACKAGE_PREFIX}-curl")
+makedepends=("${MINGW_PACKAGE_PREFIX}-cmake"
+             "${MINGW_PACKAGE_PREFIX}-ninja")
+depends=("${MINGW_PACKAGE_PREFIX}-zlib")
 options=('!strip' 'staticlibs')
-source=("http://ftp.hosteurope.de/mirror/archive.mariadb.org/connector-c-${pkgver}/mariadb-connector-c-${pkgver}-src.tar.gz"
+source=(#"https://downloads.mariadb.org/interstitial/connector-c-${pkgver}/source-tgz/mariadb-connector-c-${pkgver}-src.tar.gz"
+        http://mirror.mephi.ru/mariadb/connector-c-${pkgver}/mariadb-connector-c-${pkgver}-src.tar.gz{,.asc}
         001-mingw-build.patch
         002-fix-prototype.patch
-        003-gcc-fix-use_VA_ARGS.patch)
-validpgpkeys=("199369E5404BD5FC7D2FE43BCBCB082A1BB943DB") #MariaDB Package Signing Key <package-signing-key@mariadb.org>
-sha256sums=('SKIP'
+        003-gcc-fix-use_VA_ARGS.patch
+        004-fix-cmake-ifelse.patch)
+sha256sums=('2f5ae14708b4813e4ff6857d152c22e6fc0e551c9fa743c1ef81a68e3254fe63'
             'SKIP'
-            '7f2231363c2b21bfd578c4600ca0fad33fb8ebf2a463bc3b42f202c9ff7ef366'
-            '18d3bd0b06906e7ac295b024f1d94d9852ede0a28f06da0d51b452c2d896b432')
+            'a5ef33cae8a5a5b06c5b5686628bb8e9419f6bd2305343c63e952f4da1fa0fac'
+            '346695ce8f10c2c426f880240ef7bbe7b8d70c6e58b0cc30483735c2b2d53261'
+            'fc08055e5d63e310e2658b15f6e1f00b59f2aad2dec37560c01954fac6af4a6e'
+            'f418e0b4d7e1061a4d030c1a33c6c23dab75b47150d760f6a553c1c39b9d1268')
+validpgpkeys=("199369E5404BD5FC7D2FE43BCBCB082A1BB943DB") #MariaDB Package Signing Key <package-signing-key@mariadb.org>
 
 prepare() {
   cd ${srcdir}/mariadb-connector-c-${pkgver}-src
   patch -p1 -i ${srcdir}/001-mingw-build.patch
   patch -p1 -i ${srcdir}/002-fix-prototype.patch
   patch -p1 -i ${srcdir}/003-gcc-fix-use_VA_ARGS.patch
-  sed -i.bak 's/${OPENSSL_CRYPTO_LIBRARY}/${OPENSSL_CRYPTO_LIBRARY} -lcrypt32 -lws2_32/' CMakeLists.txt
+  patch -p1 -i ${srcdir}/004-fix-cmake-ifelse.patch
 }
 
 build() {
-  rm -rf ${srcdir}/build-${MINGW_CHOST}
-  mkdir -p ${srcdir}/build-${MINGW_CHOST}
-  cd ${srcdir}/build-${MINGW_CHOST}
+  [[ -d "${srcdir}/build-${MINGW_CHOST}" ]] && rm -rf "${srcdir}/build-${MINGW_CHOST}"
+  mkdir -p "${srcdir}/build-${MINGW_CHOST}" && cd "${srcdir}/build-${MINGW_CHOST}"
 
-
-  # Notes by Jeroen (Dec 2020):
-  # WITH_SSL=SCHANNEL require more recent mingw-w64 (and I think Windows 8.1)
-  # Plugin 'REMOTE_IO' seems unimportant and requires libcurl
-  # I couldnt' get plugins ed25519 and caching_sha2_password to work.
-  export CFLAGS="-D_WIN32_WINNT=0x0600 -D__USE_MINGW_ANSI_STDIO -D_Printf_format_string_="
   MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX=" \
-  ${MINGW_PREFIX}/bin/cmake \
-    -G "MSYS Makefiles" \
+  ${MINGW_PREFIX}/bin/cmake.exe \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=${MINGW_PREFIX} \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=RELEASE \
     -DWITH_EXTERNAL_ZLIB=ON \
-    -DWITH_UNIT_TESTS=OFF \
-    -DWITH_SSL="OPENSSL" \
     -DWITH_MYSQLCOMPAT=OFF \
+    -DWITH_SSL="SCHANNEL" \
     -DCLIENT_PLUGIN_AUTH_GSSAPI_CLIENT=STATIC \
     -DCLIENT_PLUGIN_DIALOG=STATIC \
     -DCLIENT_PLUGIN_REMOTE_IO=OFF \
     -DCLIENT_PLUGIN_PVIO_NPIPE=STATIC \
     -DCLIENT_PLUGIN_PVIO_SHMEM=STATIC \
     -DCLIENT_PLUGIN_CLIENT_ED25519=OFF \
-    -DCLIENT_PLUGIN_CACHING_SHA2_PASSWORD=OFF \
+    -DCLIENT_PLUGIN_CACHING_SHA2_PASSWORD=STATIC \
     -DCLIENT_PLUGIN_SHA256_PASSWORD=STATIC \
     -DCLIENT_PLUGIN_MYSQL_CLEAR_PASSWORD=STATIC \
     -DCLIENT_PLUGIN_MYSQL_OLD_PASSWORD=STATIC \
     ../mariadb-connector-c-${pkgver}-src
-  #Fix config files for local system
-  local PREFIX_WIN=$(cygpath -wm ${MINGW_PREFIX})
-  # fix python command in files
-  sed -e "s|${PREFIX_WIN}|${MINGW_PREFIX}/|g" -i mariadb_config/mariadb_config.c
-  make
+
+  ${MINGW_PREFIX}/bin/cmake.exe --build ./
 }
 
 package() {
   cd "${srcdir}/build-${MINGW_CHOST}"
-  make DESTDIR=${pkgdir} install
-  rm -f ${pkgdir}${MINGW_PREFIX}/{bin,lib}/*.dll*
+  DESTDIR=${pkgdir} ${MINGW_PREFIX}/bin/cmake.exe --build ./ --target install
 
-  install -D -m0755 mariadb_config/mariadb_config.exe ${pkgdir}${MINGW_PREFIX}/bin/mariadb_config.exe
+  ln -s "${pkgdir}${MINGW_PREFIX}"/include/mariadb "${pkgdir}${MINGW_PREFIX}"/include/mysql
+ cp "${pkgdir}${MINGW_PREFIX}"/lib/{libmariadbclient,libmysqlclient}.a
+  cp "${pkgdir}${MINGW_PREFIX}"/lib/{libmariadbclient,libmysqlclient_r}.a
 
-#  ln -s "${pkgdir}${MINGW_PREFIX}"/include/mariadb "${pkgdir}${MINGW_PREFIX}"/include/mysql
+  local _PRE_WIN="$(cygpath -m ${MINGW_PREFIX})"
 
-# Fix path references in include files.
-  #local PREFIX_WIN=$(cygpath -wm ${MINGW_PREFIX})
-  #sed -e "s|${PREFIX_WIN}|${MINGW_PREFIX}/|g" -i "${pkgdir}${MINGW_PREFIX}"/include/mariadb/my_config.h
- }
+  for pcfile in  "${pkgdir}${MINGW_PREFIX}"/lib/pkgconfig/*.pc; do
+    sed -s "s|${_PRE_WIN}|${MINGW_PREFIX}|g" -i "${pcfile}"
+  done
+}

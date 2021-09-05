@@ -121,3 +121,4 @@ package() {
   ar r "${pkgdir}${MINGW_PREFIX}/lib/librtmp.a"
   ar r "${pkgdir}${MINGW_PREFIX}/lib/libidn.a"
 }
+
